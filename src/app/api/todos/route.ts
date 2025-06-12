@@ -10,11 +10,6 @@ import { Todo } from '@/types'
 const file = new JSONFile<{ todos: Todo[] }>('data/db.json')
 const db = new Low<{ todos: Todo[] }>(file, { todos: [] })
 
-db.write = async () => {
-  // JSON.stringify で直接ファイルに書き込む
-  fs.writeFileSync('data/db.json', JSON.stringify(db.data, null, 2), 'utf-8')
-}
-
 // GET /api/todos
 export async function GET() {
   await db.read()
