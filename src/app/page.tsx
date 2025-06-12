@@ -17,9 +17,9 @@ export default function Home() {
       method: 'POST',
       body: JSON.stringify({ title: input }),
     })
-    const newTodo = await res.json()
-    setTodos([...todos, newTodo])
-    setInput('')
+    const newTodo = await res.json();  // ← レスポンスから新規Todoを取得
+    setTodos(prevTodos => [...prevTodos, newTodo]);  // ← 状態を更新
+    setInput('');
   }
 
   const toggleTodo = async (id: string, done: boolean) => {
