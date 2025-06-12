@@ -30,6 +30,7 @@ export default function Home() {
       body: JSON.stringify({ id, done }),
     })
     const updated = await res.json()
+    console.log('updated:', updated)
     setTodos(todos.map(todo => (todo.id === id ? updated : todo)))
   }
 
