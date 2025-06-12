@@ -5,9 +5,11 @@ import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
 import { nanoid } from 'nanoid'
 import { Todo } from '@/types'
+import path from 'path'
 
 // data/db.json のパスはプロジェクトルートからの相対か絶対で指定
-const file = new JSONFile<{ todos: Todo[] }>('data/db.json')
+const dbFile = path.join(process.cwd(), 'data', 'db.json')
+const file = new JSONFile<{ todos: Todo[] }>(dbFile)
 const db = new Low<{ todos: Todo[] }>(file, { todos: [] })
 
 // GET /api/todos
