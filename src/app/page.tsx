@@ -15,6 +15,7 @@ export default function Home() {
     if (!input) return
     const res = await fetch('/api/todos', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: input }),
     })
     const newTodo = await res.json();  // ← レスポンスから新規Todoを取得
@@ -25,6 +26,7 @@ export default function Home() {
   const toggleTodo = async (id: string, done: boolean) => {
     const res = await fetch('/api/todos', {
       method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, done }),
     })
     const updated = await res.json()
